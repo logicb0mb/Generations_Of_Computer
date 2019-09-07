@@ -1,19 +1,222 @@
-body {
+*,
+*::after,
+*::before {
   margin: 0;
-  overflow: hidden;
+  padding: 0;
+  box-sizing: inherit;
+}
+body {
+  font-family: 'Lato', sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  line-height: 1.7;
+  color: #777;
+}
+
+.gen {
+  animation-name: moveInBottom;
+  animation-duration: 1s;
+  animation-timing-function: ease-out;
+}
+
+#three-container {
+  height: 100vh;
+  width: 100vh;
+  position: absolute;
 }
 
 canvas {
-  background-image: radial-gradient(#666, #333);
+  width: 140% !important;
+  height: 100% !important;
+
+  text-align: center;
+  display: inline-block;
+  position: relative;
+  /* top: 20px; */
+  /* left: 30px; */
+}
+@keyframes moveInBottom {
+  0% {
+    opacity: 0;
+    transform: translateY(3rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+@keyframes moveInLeft {
+  0% {
+    opacity: 0;
+    transform: translateX(-10rem);
+  }
+  80% {
+    transform: translateX(2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+.section-three {
+  height: 100vh;
+  background: linear-gradient(
+      to right,
+      rgba(58, 182, 219, 0.5),
+      rgba(78, 239, 209, 0.5)
+        /*rgba(244, 196, 243, 0.3),
+      rgba(252, 103, 250, 0.3) */
+    ),
+    url(https://wallpaperplay.com/walls/full/6/4/6/221115.jpg);
+}
+/* For the grid */
+.row {
+  max-width: 114rem;
+  margin: 0 auto;
+}
+
+.row:not(:last-child) {
+  margin-bottom: 8rem;
+}
+
+.row::after {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+.row [class^='col-'] {
+  float: left;
+}
+
+.row .col-1-of-2 {
+  width: calc((100% - 6rem) / 2);
+}
+
+.row .col-1-of-3 {
+  width: calc((100% - 2 * 6rem) / 3);
+  margin-top: 3rem;
+}
+
+.row .col-2-of-3 {
+  margin-top: 3rem;
+  width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem);
+}
+
+.row .col-1-of-4 {
+  width: calc((100% - 3 * 6rem) / 4);
+}
+
+.row .col-2-of-4 {
+  width: calc(2 * ((100% - 3 * 6rem) / 4) + 6rem);
+}
+
+.row .col-3-of-4 {
+  width: calc(3 * ((100% - 3 * 6rem) / 4) + 2 * 6rem);
+}
+
+/* List headings */
+.heading__container {
+  padding-top: 4rem;
+  padding-left: 4rem;
+  padding-bottom: 4rem;
+}
+td {
+  text-align: right;
+  color: #440100;
+  height: 100%;
+  width: 100%;
+}
+.heading-secondary {
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#a3daff),
+    to(#4eefd1)
+  );
+  background-image: linear-gradient(
+    111.6deg,
+    rgba(73, 235, 221, 1) -0%,
+    rgba(83, 222, 219, 1) 7.1%,
+    rgba(105, 191, 217, 1) 13.4%,
+    rgba(127, 157, 214, 1) 18%,
+    rgba(155, 113, 208, 1) 23.9%,
+    rgba(178, 73, 201, 1) 28.8%,
+    rgba(200, 45, 192, 1) 33.3%,
+    rgba(213, 42, 180, 1) 38%,
+    rgba(232, 44, 145, 1) 44.2%,
+    rgba(239, 45, 128, 1) 52.4%,
+    rgba(249, 66, 107, 1) 59.7%,
+    rgba(252, 105, 98, 1) 67.3%,
+    rgba(252, 105, 98, 1) 74.4%,
+    rgba(254, 145, 92, 1) 82.2%,
+    rgba(255, 189, 86, 1) 88.2%,
+    rgba(254, 145, 92, 1) 82.2%,
+    rgba(254, 145, 92, 1) 90%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.2rem;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
+  animation-name: moveInLeft;
+  animation-duration: 2s;
+  animation-timing-function: ease-out;
+}
+
+.heading-secondary:hover {
+  -webkit-transform: skewY(2deg) skewX(15deg) scale(1.1);
+  transform: skewY(2deg) skewX(15deg) scale(1.1);
+  text-shadow: 0.5rem 1rem 2rem rgba(0, 0, 0, 0.2);
 }
 
 #instructions {
   position: absolute;
-  color: #fff;
-  bottom: 0;
+  font-size: 2rem;
+  text-transform: uppercase;
+  font-weight: 700;
+  display: inline-block;
+  top: 20px;
   padding-bottom: 6px;
   font-family: sans-serif;
   width: 100%;
   text-align: center;
   pointer-events: none;
+  background-image: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#a3daff),
+    to(#4eefd1)
+  );
+  background-image: linear-gradient(
+    111.6deg,
+    rgba(73, 235, 221, 1) -0%,
+    rgba(83, 222, 219, 1) 7.1%,
+    rgba(105, 191, 217, 1) 13.4%,
+    rgba(127, 157, 214, 1) 18%,
+    rgba(155, 113, 208, 1) 23.9%,
+    rgba(178, 73, 201, 1) 28.8%,
+    rgba(200, 45, 192, 1) 33.3%,
+    rgba(213, 42, 180, 1) 38%,
+    rgba(232, 44, 145, 1) 44.2%,
+    rgba(239, 45, 128, 1) 52.4%,
+    rgba(249, 66, 107, 1) 59.7%,
+    rgba(252, 105, 98, 1) 67.3%,
+    rgba(252, 105, 98, 1) 74.4%,
+    rgba(254, 145, 92, 1) 82.2%,
+    rgba(254, 145, 92, 1) 90%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: 0.2rem;
+  -webkit-transition: all 0.2s;
+  transition: all 0.2s;
 }

@@ -12,31 +12,24 @@ function init() {
   root.renderer.setPixelRatio(window.devicePixelRatio || 1);
   root.camera.position.set(0, 0, 60);
 
-  var width = 100;
-  var height = 60;
-
-  var slide = new Slide(width, height, 'out');
-  var l1 = new THREE.ImageLoader();
-  l1.setCrossOrigin('Anonymous');
-  l1.load(
-    'https://cors-anywhere.herokuapp.com/https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/winter.jpg',
-    function(img) {
-      slide.setImage(img);
-    }
-  );
-  root.scene.add(slide);
+  var width = 150;
+  var height = 80;
 
   var slide2 = new Slide(width, height, 'in');
   var l2 = new THREE.ImageLoader();
   l2.setCrossOrigin('Anonymous');
-  l2.load(
-    'https://cors-anywhere.herokuapp.com/https://s3-us-west-2.amazonaws.com/s.cdpn.io/175711/spring.jpg',
-    function(img) {
-      slide2.setImage(img);
-    }
-  );
+  l2.load('./img-2.jpg', function(img) {
+    slide2.setImage(img);
+  });
 
   root.scene.add(slide2);
+  var slide = new Slide(width, height, 'out');
+  var l1 = new THREE.ImageLoader();
+  l1.setCrossOrigin('Anonymous');
+  l1.load('./img-1.jpg', function(img) {
+    slide.setImage(img);
+  });
+  root.scene.add(slide);
 
   var tl = new TimelineMax({ repeat: -1, repeatDelay: 1.0, yoyo: true });
 
@@ -193,7 +186,9 @@ function Slide(width, height, animationPhase) {
       },
       shaderFunctions: [
         THREE.BAS.ShaderChunk['cubic_bezier'],
-        //THREE.BAS.ShaderChunk[(animationPhase === 'in' ? 'ease_out_cubic' : 'ease_in_cubic')],
+        // THREE.BAS.ShaderChunk[
+        //   animationPhase === 'in' ? 'ease_out_cubic' : 'ease_in_cubic'
+        // ],
         THREE.BAS.ShaderChunk['ease_in_out_cubic'],
         THREE.BAS.ShaderChunk['quaternion_rotation']
       ],
@@ -301,8 +296,17 @@ function THREERoot(params) {
     antialias: params.antialias,
     alpha: true
   });
-  this.renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
+
+  container = document.getElementById('three-container');
+
+  this.renderer.setSize(
+    document.getElementById('three-container').width,
+    document.getElementById('three-container').height
+  );
+
+  // this.renderer.setPixelRatio(Math.min(2, window.devicePixelRatio || 1));
   document
+    // FIXME:
     .getElementById('three-container')
     .appendChild(this.renderer.domElement);
 
@@ -431,7 +435,7 @@ function createTweenScrubber(tween, seekSpeed) {
 
   // desktop
   var mouseDown = false;
-  document.body.style.cursor = 'pointer';
+  // document.body.style.cursor = 'pointer';
 
   window.addEventListener('mousedown', function(e) {
     mouseDown = true;
