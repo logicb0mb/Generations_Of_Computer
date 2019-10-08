@@ -17,10 +17,12 @@ body {
   animation-name: moveInBottom;
   animation-duration: 1s;
   animation-timing-function: ease-out;
+  text-transform: uppercase;
+  color: rgba(232, 44, 145, 1);
 }
 
 #three-container {
-  height: 100vh;
+  height: 100%;
   width: 100vh;
   position: absolute;
 }
@@ -58,16 +60,22 @@ canvas {
     transform: translateX(0);
   }
 }
+@keyframes moveInRight {
+  0% {
+    opacity: 0;
+    transform: translateX(10rem);
+  }
+  80% {
+    transform: translateX(-2rem);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 .section-three {
   height: 100vh;
-  background: linear-gradient(
-      to right,
-      rgba(58, 182, 219, 0.5),
-      rgba(78, 239, 209, 0.5)
-        /*rgba(244, 196, 243, 0.3),
-      rgba(252, 103, 250, 0.3) */
-    ),
-    url(https://wallpaperplay.com/walls/full/6/4/6/221115.jpg);
+  background: url(./dot-grid.png);
 }
 /* For the grid */
 .row {
@@ -95,11 +103,11 @@ canvas {
 
 .row .col-1-of-3 {
   width: calc((100% - 2 * 6rem) / 3);
-  margin-top: 3rem;
+  margin-top: 2rem;
 }
 
 .row .col-2-of-3 {
-  margin-top: 3rem;
+  margin-top: 2rem;
   width: calc(2 * ((100% - 2 * 6rem) / 3) + 6rem);
 }
 
@@ -127,6 +135,7 @@ td {
   height: 100%;
   width: 100%;
 }
+
 .heading-secondary {
   font-size: 2rem;
   text-transform: uppercase;
@@ -219,4 +228,6 @@ td {
   letter-spacing: 0.2rem;
   -webkit-transition: all 0.2s;
   transition: all 0.2s;
+  animation-name: moveInRight;
+  animation-direction: 1s;
 }

@@ -9,6 +9,7 @@
   "author": "Shreyas Shukla",
   "license": "ISC",
   "dependencies": {
+    "live-server": "^1.2.1",
     "three-bas": "^2.10.1"
   }
 }
